@@ -15,13 +15,10 @@ public class Game2 extends SPIEL {
 	int yRoom = 1;
 	Dungeon Dungeon;
 	KAMERA cam;
-	// private int k = 32;
 	FIGUR player;
 	private String stddir = "./DungeonGame";
 	private BILD n;
 	private int posx = 96, posy = 96;
-	private int room = 1;
-
 	public Game2(int width, int height) {
 		super(width, height);
 	}
