@@ -117,7 +117,7 @@ public class Game2 extends SPIEL {
 				this.posx -= 64;
 			}
 			break;
-		case TASTE.R: // allgemeiner Kamera-Reset
+		case TASTE.R: // allgemeiner Kamera-Reset, muss bei neuen Räumen angepasst werden
 			if (this.posy < 576) {
 				cam.setzeBounds(0, 0, 1088, 576);
 			} else if (this.posy > 576) {
@@ -216,13 +216,5 @@ public class Game2 extends SPIEL {
 			dy = y;
 			x += 64;
 		}
-	}
-
-	public int returnX() {
-		return this.posx;
-	}
-
-	public int returnY() {
-		return this.posy;
 	}
 }
