@@ -7,7 +7,7 @@ import stdclasses.KAMERA;
 import stdclasses.SPIEL;
 import stdclasses.TASTE;
 
-public class Game2 extends SPIEL {
+public class Game extends SPIEL {
 
 	// Manager m = new Manager();
 	Knoten knoten = new Knoten();
@@ -19,11 +19,11 @@ public class Game2 extends SPIEL {
 	private String stddir = "./DungeonGame";
 	private BILD n;
 	private int posx = 96, posy = 96;
-	public Game2(int width, int height) {
+	public Game(int width, int height) {
 		super(width, height);
 	}
 
-	public Game2() {
+	public Game() {
 		super(1088, 576);
 		cam = new KAMERA();
 		/*
@@ -114,7 +114,7 @@ public class Game2 extends SPIEL {
 				this.posx -= 64;
 			}
 			break;
-		case TASTE.R: // allgemeiner Kamera-Reset, muss bei neuen Räumen angepasst werden
+		case TASTE.R: // allgemeiner Kamera-Reset, muss bei neuen RÃ¤umen angepasst werden
 			if (this.posy < 576) {
 				cam.setzeBounds(0, 0, 1088, 576);
 			} else if (this.posy > 576) {
