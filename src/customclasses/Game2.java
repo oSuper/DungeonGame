@@ -133,10 +133,10 @@ public class Game2 extends SPIEL {
 	public void generation(int[][] room, int x, int y) {
 		StringBuilder sb = new StringBuilder(50);
 		sb.append(stddir);
-		int dx = x, dy = y;
+		int dy = y;
 		float deg = 0;
-		for (int i = 0; i < 17; i++) { // Abfrage in x-Richtung
-			for (int j = 0; j < 9; j++) { // Abfrage in y-Richtung
+		for (int i = 0; i < 17; i++) { 			// Abfrage in x-Richtung
+			for (int j = 0; j < 9; j++) {	 	// Abfrage in y-Richtung
 				switch (room[j][i]) {
 				case R._BODEN_:
 					sb.append("/img/Boden.png");
@@ -204,7 +204,7 @@ public class Game2 extends SPIEL {
 
 				}
 
-				BILD b = new BILD(dx, dy, sb.toString());
+				BILD b = new BILD(x, dy, sb.toString());
 				if (deg != 0) {
 					b.drehenUm(deg);
 					deg = 0;
@@ -214,7 +214,7 @@ public class Game2 extends SPIEL {
 				dy += 64;
 			}
 			dy = y;
-			dx += 64;
+			x += 64;
 		}
 	}
 
