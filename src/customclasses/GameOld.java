@@ -7,7 +7,7 @@ import stdclasses.KAMERA;
 import stdclasses.SPIEL;
 import stdclasses.TASTE;
 
-public class Game extends SPIEL {
+public class GameOld extends SPIEL {
 	// Knoten knoten = new Knoten();
 	int xRoom = 1;
 	int yRoom = 1;
@@ -19,7 +19,7 @@ public class Game extends SPIEL {
 	private BILD n;
 	private int posx = 96, posy = 96;
 
-	public Game() {
+	public GameOld() {
 
 		super(1088, 576);
 		cam = new KAMERA();
