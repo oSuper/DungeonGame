@@ -1,3 +1,4 @@
+//alte Klasse mit der alten Room-Generation
 package customclasses;
 
 import stdclasses.BILD;
