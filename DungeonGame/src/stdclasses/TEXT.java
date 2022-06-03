@@ -25,9 +25,10 @@ import ea.*;
 public class TEXT
 extends TextE 
 {
-    
-    
-    /**
+    private static final long serialVersionUID = 1L;
+
+
+	/**
      * TEXT Konstruktor
      *
      * @param   x       x-Koordinate im Fenster (Pixel)

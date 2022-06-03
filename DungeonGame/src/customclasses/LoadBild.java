@@ -4,18 +4,18 @@ import java.awt.image.BufferedImage;
 
 import java.awt.*;
 import ea.internal.io.ImageLoader;
-import stdclasses.BildN;
+import stdclasses.bildN;
 
 public class LoadBild
 {
 	private BufferedImage img;
-	private BildN b;
+	private bildN b;
 	
 	public LoadBild(int x, int y, String name, int dimension)
     {
         img = ImageLoader.loadExternalImage(name);
         img = resize(img, dimension, dimension);
-        b = new BildN(img, x, y);
+        b = new bildN(img, x, y);
     }
 	public static BufferedImage resize (BufferedImage img, int width, int height)
 	{
@@ -46,7 +46,7 @@ public class LoadBild
 	{
 		b.addCam(dimension);
 	}
-	public BildN getB()
+	public bildN getB()
 	{
 		return b;
 	}

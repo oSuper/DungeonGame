@@ -8,13 +8,13 @@ import ea.internal.phy.PhysikClient;
 
 import java.awt.image.BufferedImage;
 
-public class BildN extends Bild
+public class bildN extends Bild
 {
 	private PhysikClient phClient = new NullClient(this);
 	private static final long serialVersionUID = 1L;
 	private KAMERA k;
 
-	public BildN(BufferedImage img, int x, int y)
+	public bildN(BufferedImage img, int x, int y)
     {
         super(x, y, img);
         FensterE.getFenster().wurzel.add(this);

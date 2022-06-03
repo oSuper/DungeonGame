@@ -26,7 +26,9 @@ public class DREIECK
         extends DreieckE 
 {
     
-    /**
+    private static final long serialVersionUID = 1L;
+
+	/**
      * Die Farbe dieses Dreiecks
      */
     private String farbe;

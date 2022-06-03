@@ -22,7 +22,9 @@ public class FIGUR
         extends FigurE
 {
     
-    private int groessenFaktor;
+    private static final long serialVersionUID = 1L;
+
+	private int groessenFaktor;
     
     private boolean farbNegativ;
 

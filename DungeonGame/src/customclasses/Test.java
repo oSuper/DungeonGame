@@ -9,6 +9,7 @@ public class Test extends SPIEL{
 
 BILD Bild;
 KAMERA cam;
+@SuppressWarnings("unused")
 public Test(){
     
     super(1000, 1000);

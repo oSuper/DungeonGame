@@ -4,7 +4,8 @@ import stdclasses.FIGUR;
 import stdclasses.TASTE;
 
 public class Player extends FIGUR{
-    private String Key = "Figur.png";
+    private static final long serialVersionUID = 1L;
+	//private String Key = "Figur.png";
     public Player(int posx, int posy, String datei){
         super(posx, posy, datei);       
         
@@ -17,7 +18,10 @@ public class Player extends FIGUR{
             case TASTE.LINKS:  super.verschiebenUm(-16, +0); break;
         }
     }
+    
+    /*
     private String gebeSchluessel(){
         return Key;
     }
+    */
 }

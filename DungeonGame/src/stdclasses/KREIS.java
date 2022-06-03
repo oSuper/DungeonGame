@@ -24,7 +24,9 @@ public class KREIS
         extends KreisE 
 {
      
-    /**
+    private static final long serialVersionUID = 1L;
+
+	/**
      * Die Farbe dieses Kreises
      */
     private String farbe;

@@ -25,7 +25,9 @@ public class RECHTECK
         extends RechteckE 
 {
         
-    /**
+    private static final long serialVersionUID = 1L;
+
+	/**
      * Die Farbe dieses Rechtecks
      */
     private String farbe;

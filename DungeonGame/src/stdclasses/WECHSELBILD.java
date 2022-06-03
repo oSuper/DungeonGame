@@ -22,7 +22,8 @@ import ea.Punkt;
 public class WECHSELBILD
 extends Knoten
 {
-    private int anz_Bilder;
+    private static final long serialVersionUID = 1L;
+	private int anz_Bilder;
     private BildE[] bilder;
     private int akt_BildNr;
 
