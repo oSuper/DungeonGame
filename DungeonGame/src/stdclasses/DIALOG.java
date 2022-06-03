@@ -13,8 +13,7 @@ import ea.edu.FensterE;
  */
 public class DIALOG
 {
-
-    /**
+	/**
      * Konstruktor der Klasse DIALOG. 
      * Ein Dialog-Objekt kann diverse Dialog-Fenster erzeugen.
      */
@@ -22,8 +21,7 @@ public class DIALOG
     {
         // nichts
     }
-        
-
+    
     /**
      * Zeigt ein Fenster mit einer Frage an, wodurch das Spiele-Fenster verdeckt wird. 
      * Erst wenn der Dialog mit JA oder NEIN besaetigt wurde, ist das Spiele-Fenster wieder frei. 
@@ -38,7 +36,6 @@ public class DIALOG
         return FensterE.getFenster().frage( frage );
     }
     
-    
     /**
      * Zeigt ein Fenster mit einer Nachricht an, wodurch das Spiele-Fenster verdeckt wird. 
      * Erst wenn der Dialog mit OK besaetigt wurde, ist das Spiele-Fenster wieder frei. 
@@ -51,7 +48,6 @@ public class DIALOG
     {
         FensterE.getFenster().nachrichtSchicken( nachricht );
     }
-    
     
     /**
      * Zeigt ein Fenster mit einer Frage an, wodurch das Spiele-Fenster verdeckt wird. 
@@ -67,7 +63,6 @@ public class DIALOG
     {
         return FensterE.getFenster().eingabeFordern( frage );
     }
-    
     
     /**
      * Zeigt ein Fenster mit einer Highscore-Anzeige, wodurch das Spiele-Fenster verdeckt wird. 

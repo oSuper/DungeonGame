@@ -7,7 +7,8 @@ import stdclasses.KAMERA;
 import stdclasses.SPIEL;
 import stdclasses.TASTE;
 
-public class Game extends SPIEL {
+public class Game extends SPIEL
+{
 
 	// Manager m = new Manager();
 	private static int dimension = 64;
@@ -22,11 +23,13 @@ public class Game extends SPIEL {
 	private LoadBild n;
 	private double posx = 1.5 * dimension, posy = 1.5 * dimension;
 
-	public Game(int width, int height) {
+	public Game(int width, int height)
+	{
 		super(width, height);
 	}
 
-	public Game() {
+	public Game()
+	{
 		super(17 * dimension, 9 * dimension);
 		cam = new KAMERA();
 		/*
@@ -75,144 +78,181 @@ public class Game extends SPIEL {
 		posy = (1.5 * dimension);
 		cam.setzeBounds(0, 0, 17 * dimension, 9 * dimension);
 		cam.setzeFokus(n.getB());
-
 	}
 
 	@Override
-	public void tasteReagieren(int code) {
-		switch (code) {
-		case TASTE.OBEN:
-		case TASTE.W:
+	public void tasteReagieren(int code)
+	{
+		switch (code)
+		{
+			case TASTE.OBEN:
+			case TASTE.W:
 			/*
 			 * if(this.posy-64 == 32 && this.posx == 544) { n.setzeDrehwinkel(0);
 			 * cam.setzeBounds(0,576,5120,2880); n.bewegen(0,576); this.posy += 576; }
 			 */
-			n.setzeDrehwinkel(0);
-			if (this.posy > 1.5 * dimension) {
-				n.bewegen(0, -dimension);
-				this.posy -= dimension;
-			}
-			break;
-		case TASTE.RECHTS:
-		case TASTE.D:
-			n.setzeDrehwinkel(-25);
-			if (this.posx < 15 * dimension) {
-				n.bewegen(+dimension, 0);
-				this.posx += dimension;
-			}
-			break;
-		case TASTE.UNTEN:
-		case TASTE.S:
-			n.setzeDrehwinkel(0);
-			if (this.posy + dimension == 8.5 * dimension && this.posx == 8.5 * dimension) {
-				cam.setzeBounds(0, 9 * dimension, 17 * dimension, 18 * dimension);
-				n.bewegen(0, 3 * dimension);
-				this.posy += 3 * dimension;
-			} else if (this.posy < 7 * dimension) {
-				n.bewegen(0, +dimension);
-				this.posy += dimension;
-			} else if (this.posy < 16 * dimension && this.posy >= 17 * dimension) {
-				n.bewegen(0, +dimension);
-				this.posy += dimension;
-			}
-			break;
-		case TASTE.LINKS:
-		case TASTE.A:
-			n.setzeDrehwinkel(25);
-			if (this.posx > 1.5 * dimension) {
-				n.bewegen(-dimension, 0);
-				this.posx -= dimension;
-			}
-			break;
-		case TASTE.R: // allgemeiner Kamera-Reset, muss bei neuen Räumen angepasst werden
-			if (this.posy < 9 * dimension) {
-				cam.setzeBounds(0, 0, 17 * dimension, 9 * dimension);
-			} else if (this.posy > 576) {
-				cam.setzeBounds(0, 9 * dimension, 17 * dimension, 9 * dimension);
-			}
-			break;
-		default:
-			System.out.println("Falsche Taste!");
-			break;
+				n.setzeDrehwinkel(0);
+				if (this.posy > 1.5 * dimension)
+				{
+					n.bewegen(0, -dimension);
+					this.posy -= dimension;
+				}	
+				break;
+			
+			case TASTE.RECHTS:
+			case TASTE.D:
+				n.setzeDrehwinkel(-25);
+				if (this.posx < 15 * dimension)
+				{
+					n.bewegen(+dimension, 0);
+					this.posx += dimension;
+				}
+				break;
+		
+			case TASTE.UNTEN:
+			case TASTE.S:
+				n.setzeDrehwinkel(0);
+				if (this.posy + dimension == 8.5 * dimension && this.posx == 8.5 * dimension)
+				{
+					cam.setzeBounds(0, 9 * dimension, 17 * dimension, 18 * dimension);
+					n.bewegen(0, 3 * dimension);
+					this.posy += 3 * dimension;
+				}
+				else if (this.posy < 7 * dimension)
+				{
+					n.bewegen(0, +dimension);
+					this.posy += dimension;
+				}
+				else if (this.posy < 16 * dimension && this.posy >= 17 * dimension)
+				{
+					n.bewegen(0, +dimension);
+					this.posy += dimension;
+				}
+				break;
+		
+			case TASTE.LINKS:
+			case TASTE.A:
+				n.setzeDrehwinkel(25);
+				if (this.posx > 1.5 * dimension)
+				{
+					n.bewegen(-dimension, 0);
+					this.posx -= dimension;
+				}
+				break;
+		
+			case TASTE.R: // allgemeiner Kamera-Reset, muss bei neuen Räumen angepasst werden
+				if (this.posy < 9 * dimension)
+				{
+					cam.setzeBounds(0, 0, 17 * dimension, 9 * dimension);
+				}
+				else if (this.posy > 576)
+				{
+					cam.setzeBounds(0, 9 * dimension, 17 * dimension, 9 * dimension);
+				}
+				break;
+		
+			default:
+				System.out.println("Falsche Taste!");
+				break;
 		}
 	}
 
-	public void generation(int[][] room, int x, int y) {
+	public void generation(int[][] room, int x, int y)
+	{
 		StringBuilder sb = new StringBuilder(50);
 		sb.append(stddir);
 		int dy = y;
 		float deg = 0;
-		for (int i = 0; i < 17; i++) { // Abfrage in x-Richtung
-			for (int j = 0; j < 9; j++) { // Abfrage in y-Richtung
-				switch (room[j][i]) {
-				case R._BODEN_:
-					sb.append("/img/Boden.png");
-					break;
-				case R.ECKE_LO:
-					sb.append("/img/EckeObenLinks.png");
-					break;
-				case R.ECKE_RO:
-					sb.append("/img/EckeObenLinks.png");
-					deg = 90;
-					// sb.append("/img/EckeObenRechts.png");
-					break;
-				case R.ECKE_LU:
-					sb.append("/img/EckeObenLinks.png");
-					deg = -90;
-					// sb.append("/img/EckeUntenLinks.png");
-					break;
-				case R.ECKE_RU:
-					sb.append("/img/EckeObenLinks.png");
-					deg = 180;
-					// sb.append("/img/EckeUntenRechts.png");
-					break;
-				case R._WAND_O:
-					sb.append("/img/WandOben.png");
-					break;
-				case R._WAND_U:
-					sb.append("/img/WandOben.png");
-					deg = 180;
-					// sb.append("/img/WandUnten.png");
-					break;
-				case R._WAND_L:
-					sb.append("/img/WandOben.png");
-					deg = -90;
-					// sb.append("/img/WandLinks.png");
-					break;
-				case R._WAND_R:
-					sb.append("/img/WandOben.png");
-					deg = 90;
-					// sb.append("/img/WandRechts.png");
-					break;
-				case R._DOOR_O:
-					sb.append("/img/DoorTop.png");
-					break;
-				case R._DOOR_U:
-					sb.append("/img/DoorTop.png");
-					deg = 180;
-					break;
-				case R._DOOR_R:
-					sb.append("/img/DoorTop.png");
-					deg = 90;
-					break;
-				case R._DOOR_L:
-					sb.append("/img/DoorTop.png");
-					deg = -90;
-					break;
-				case R.TELEPORTER:
-					sb.append("/img/Teleporter_2.png");
-					break;
-				case R.WASSER:
-					sb.append("/img/Wasser_2.png");
-					break;
-				case R.GRASS:
-					sb.append("/img/Grass.png");
-					break;
-
+		for (int i = 0; i < 17; i++) // Abfrage in x-Richtung 
+		{
+			for (int j = 0; j < 9; j++) // Abfrage in y-Richtung 
+			{
+				switch (room[j][i])
+				{
+					case R._BODEN_:
+						sb.append("/img/Boden.png");
+						break;
+				
+				
+					case R.ECKE_LO:
+						sb.append("/img/EckeObenLinks.png");
+						break;
+				
+					case R.ECKE_RO:
+						sb.append("/img/EckeObenLinks.png");
+						deg = 90;
+						// sb.append("/img/EckeObenRechts.png");
+						break;
+				
+					case R.ECKE_LU:
+						sb.append("/img/EckeObenLinks.png");
+						deg = -90;
+						// sb.append("/img/EckeUntenLinks.png");
+						break;
+				
+					case R.ECKE_RU:
+						sb.append("/img/EckeObenLinks.png");
+						deg = 180;
+						// sb.append("/img/EckeUntenRechts.png");
+						break;
+				
+					case R._WAND_O:
+						sb.append("/img/WandOben.png");
+						break;
+					
+					case R._WAND_U:
+						sb.append("/img/WandOben.png");
+						deg = 180;
+						// sb.append("/img/WandUnten.png");
+						break;
+				
+					case R._WAND_L:
+						sb.append("/img/WandOben.png");
+						deg = -90;
+						// sb.append("/img/WandLinks.png");
+						break;
+					
+					case R._WAND_R:
+						sb.append("/img/WandOben.png");
+						deg = 90;
+						// sb.append("/img/WandRechts.png");
+						break;
+					
+					case R._DOOR_O:
+						sb.append("/img/DoorTop.png");
+						break;
+				
+					case R._DOOR_U:
+						sb.append("/img/DoorTop.png");
+						deg = 180;
+						break;
+					
+					case R._DOOR_R:
+						sb.append("/img/DoorTop.png");
+						deg = 90;
+						break;
+					
+					case R._DOOR_L:
+						sb.append("/img/DoorTop.png");
+						deg = -90;
+						break;
+					
+					case R.TELEPORTER:
+						sb.append("/img/Teleporter_2.png");
+						break;
+					
+					case R.WASSER:
+						sb.append("/img/Wasser_2.png");
+						break;
+					
+					case R.GRASS:
+						sb.append("/img/Grass.png");
+						break;
 				}
 
 				LoadBild b = new LoadBild(x, dy, sb.toString(), dimension);
-				if (deg != 0) {
+				if (deg != 0)
+				{
 					b.drehenUm(deg);
 					deg = 0;
 				}
@@ -223,6 +263,5 @@ public class Game extends SPIEL {
 			dy = y;
 			x += dimension;
 		}
-	}
-	
+	}	
 }

@@ -22,8 +22,7 @@ import ea.Raum;
 /**
  * Diese Klasse stellt ein einfaches Dreieck dar.
  */
-public class DREIECK 
-        extends DreieckE 
+public class DREIECK extends DreieckE 
 {
     
     private static final long serialVersionUID = 1L;

@@ -1,17 +1,15 @@
 package customclasses;
 
-public class Boden implements Terrain {
-
+public class Boden implements Terrain
+{
 	private String Key = "Boden.png";
-
-	public Boden() {
+	
+	public Boden() 
+	{
 		Key = "Boden.png";
-
 	}
-
-	public String gebeSchluessel() {
+	public String gebeSchluessel()
+	{
 		return Key;
-
 	}
-
 }

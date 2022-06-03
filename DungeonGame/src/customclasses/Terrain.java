@@ -1,16 +1,5 @@
 package customclasses;
-public interface Terrain{
-
-
-public String gebeSchluessel();
-
-
-
-
-
-
-
-
-
-
+public interface Terrain
+{
+	public String gebeSchluessel();
 }

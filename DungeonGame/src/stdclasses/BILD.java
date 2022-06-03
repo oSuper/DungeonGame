@@ -22,18 +22,9 @@ import ea.*;
  *              
  */
 
-public class BILD
-extends BildE
+public class BILD extends BildE
 {
-    
-    
-
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
 
 	/**
      * BILD Konstruktor.
@@ -47,10 +38,8 @@ extends BildE
     public BILD( int x , int y, String name )
     {
         super( x , y, name );
-        this.setzeMittelpunkt( x , y );
-        
+        this.setzeMittelpunkt( x , y );    
     }
-    
     
     /**
      * Verschiebt das Objekt um die angegebenen Pixel. 
@@ -64,7 +53,6 @@ extends BildE
         super.bewegen( deltaX , deltaY );
     }
     
-    
     /**
      * Prueft, ob ein anderes Grafik-Objekt beruehrt wird. 
      *
@@ -77,7 +65,6 @@ extends BildE
         return super.schneidet( r );
     }
 
-    
     /**
      * Prueft, ob das Objekt einen bestimmten Punkt (in Pixel-Koordinaten) beinhaltet. 
      *
@@ -92,7 +79,6 @@ extends BildE
         return super.beinhaltet( new Punkt(x,y) );
     }
     
-    
     /**
      * Setzt den Mittelpunkt des Objekts auf einen (in Pixel-Koordinaten) anzugebenden Punkt. 
      *
@@ -105,7 +91,6 @@ extends BildE
         super.mittelpunktSetzen( x , y );
     }
     
-    
     /**
      * Nennt die x-Koordinate (in Pixel) des Mittelpunkts dieses Objekts. 
      *
@@ -115,7 +100,6 @@ extends BildE
     {
         return super.zentrum().x();
     }
-    
     
     /**
      * Nennt die y-Koordinate (in Pixel) des Mittelpunkts dieses Objekts. 
@@ -127,7 +111,6 @@ extends BildE
         return super.zentrum().y();
     }
     
-    
     /**
      * Macht das Objekt sichtbar / unsichtbar. 
      *
@@ -137,7 +120,6 @@ extends BildE
     {
         super.sichtbarSetzen( sichtbarNeu );
     }
-    
     
     /**
      * Prueft, od dieses Objekt gerade sichtbar ist. 
@@ -149,7 +131,6 @@ extends BildE
         return super.sichtbar();
     }
     
-    
     /**
      * Dreht die Grafik um den angegebenen Winkel. 
      *
@@ -160,7 +141,6 @@ extends BildE
     {
         this.drehenRelativ( -winkelAenderung );
     }
-    
     
     /**
      * Setzt den Drehwinkel auf einen absoluten neuen Wert. 
@@ -175,7 +155,6 @@ extends BildE
         this.drehenAbsolut( -neuerDrehwinkel );
     }
     
-    
     /**
      * Nennt den Winkel, um den die Grafik gegenueber ihrer Erzeugung gedreht wurde. 
      *
@@ -189,7 +168,6 @@ extends BildE
         return (float)( -super.gibDrehung() );
     }
     
-    
     /**
      * Liefert den Sinus des aktuellen Drehwinkels der Grafik. 
      *
@@ -200,7 +178,6 @@ extends BildE
         return (float)( Math.sin( super.gibDrehung() * Math.PI / 180 ) );
     }
     
-    
     /**
      * Liefert den Cosinus des aktuellen Drehwinkels der Grafik. 
      *
@@ -210,7 +187,6 @@ extends BildE
     {
         return (float)( Math.cos( this.gibDrehung() * Math.PI / 180 ) );
     }
-    
     
     /**
      * Diese Methode prueft, wie weit der Mittelpunkt dieses Objekts vom Mittelpunkt 
@@ -226,7 +202,6 @@ extends BildE
         return super.mittelPunkt().x() - grafikObjekt.mittelPunkt().x();
     }
     
-    
     /**
      * Diese Methode prueft, wie weit der Mittelpunkt dieses Objekts vom Mittelpunkt 
      * eines anderen Grafik-Objekts in y-Richtung entfernt ist.
@@ -241,13 +216,7 @@ extends BildE
         return super.mittelPunkt().x() - grafikObjekt.mittelPunkt().y();
     }
     
-    
-    
-    
-    
     // - - - - - Zusaetzliche Jump'n'Run-Physik - - - - -
-    
-    
     /**
      * Methode zum Aktivieren der Jump'n'Run-Physik fuer dieses Objekt. 
      * Dieses Objekt ist nun aktiv und kann passive Objekte NICHT durchdringen.
@@ -258,7 +227,6 @@ extends BildE
         super.aktivMachen();
     }
     
-    
     /**
      * Methode zum Deaktivieren der Jump'n'Run-Physik fuer dieses Objekt. 
      */
@@ -267,7 +235,6 @@ extends BildE
     {
         super.neutralMachen();
     }
-    
     
     /**
      * Methode zum Aktivieren der Jump'n'Run-Physik fuer dieses Objekt. 
@@ -281,7 +248,6 @@ extends BildE
         super.passivMachen();
     }
     
-    
     /**
      * Methode zum Aktivieren der Schwerkraft fuer dieses Objekt. 
      * Von nun an unterliegt das Objekt der Schwerkraft und faellt runter.
@@ -294,7 +260,6 @@ extends BildE
         super.schwerkraftAktivSetzen( b );
     }
     
-    
     /**
      * Setzt die Staerke der Schwerkraft.
      * 
@@ -305,7 +270,6 @@ extends BildE
     {
         super.schwerkraftSetzen( n );
     }
-    
     
     /**
      * Methode zum hochspringen, wenn das Objekt aktiv ist und auf einem passiven Objekt steht.
@@ -319,7 +283,6 @@ extends BildE
         return super.sprung( staerke );
     }
     
-    
     /**
      * Prueft ob dieses Grafik-Objekt, wenn es aktiv ist, auf einem anderen, passiven Grafik-Objekt steht.
      *
@@ -331,5 +294,4 @@ extends BildE
     {
         return super.stehtAuf( r );
     }
-
 }

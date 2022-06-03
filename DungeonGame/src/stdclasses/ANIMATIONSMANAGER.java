@@ -19,7 +19,6 @@ public class ANIMATIONSMANAGER
 {
     private static AnimationsManager am;
     
-    
     /**
      * Konstruktor der Klasse ANIMATIONSMANAGER
      */
@@ -28,9 +27,6 @@ public class ANIMATIONSMANAGER
         //this.am = FensterE.getFenster().animationsManager.getAnimationsManager();
         am = AnimationsManager.getAnimationsManager();
     }
-    
-    
-    
     
     /**
      * Laesst ein Objekt im Kreis um einen Punkt laufen. 
@@ -48,9 +44,6 @@ public class ANIMATIONSMANAGER
     {
         am.kreisAnimation( r , new Punkt(x,y) , true , t , imUhrzeigerSinn );
     }
-    
-    
-    
     
     /**
      * Bewegt ein Objekt laengs einer (Halb)Geraden.  
@@ -73,8 +66,6 @@ public class ANIMATIONSMANAGER
         am.geradenAnimation( r , new Punkt(x,y) , zielZeit , zielZeit );
     }
     
-    
-    
     /**
      * Bewegt ein Objekt zwischen seinem aktuellen Mittelpunkt und einem anderen Punkt fortwaehrend hin und her.
      *
@@ -91,8 +82,6 @@ public class ANIMATIONSMANAGER
         am.streckenAnimation( r , streckenDauer , new ea.Punkt(x,y) );
     }
     
-    
-    
     /**
      * Bewegt ein Objekt von seinem aktuellen Mittelpunkt ueber beliebig viele Punkte fortwaehrend hin und her.
      *
@@ -108,9 +97,6 @@ public class ANIMATIONSMANAGER
     {
         am.streckenAnimation( r , laufDauer , punkte );
     }
-    
-    
-    
     
     /**
      * Methode animationBeendenVon
