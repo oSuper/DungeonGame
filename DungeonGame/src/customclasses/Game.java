@@ -27,6 +27,9 @@ public class Game extends SPIEL {
 	int fx = 1, fy = 4;
 	// speichert feldtkoordinate des derzeitigen spielfeldes (1 feld = dimension *
 	// dimension) der figur (beginnt bei 0)
+	int roomNumber = 1;
+	int boundL, boundO, boundR, boundU;
+	Integer[][] currentRoom = R.room1;
 
 	public Game(int width, int height) {
 		super(width, height);
@@ -35,10 +38,12 @@ public class Game extends SPIEL {
 	public Game() {
 		super(17 * dimension, 9 * dimension);
 		cam = new KAMERA();
+		R.connectDoors();
 		generation(R.room1, 0, 0);
-		generation(R.room2, 0, (int) (9 * dimension));
-		generation(R.room3, 0, (int) (18 * dimension));
-		generation(R.room4, 0, (int) (27 * dimension));
+		generation(R.room2, 17 * dimension, 0);
+		generation(R.room3, 34 * dimension, 0);
+		generation(R.room4, 51 * dimension, 0);
+		generation(R.room5, 68 * dimension, 0);
 		// n = new LoadBild((int)(1.5 * dimension), (int)(1.5 * dimension),
 		// stddir.concat("/img/Figur.png"), dimension);
 		n = new LoadBild((int) (dimension), (int) (4 * dimension), stddir.concat("/img/Figur.png"), dimension);
@@ -50,23 +55,35 @@ public class Game extends SPIEL {
 
 	}
 	
-	public void setzeBoundingRechteck(){
-		
+	//public void setzeBoundingRechteck(int boundL, int boundO, int boundR, int boundU){
+	public void setCamBounds() {
+		//cam.setzeBounds(boundL, boundO, boundR, boundU);
+		if(this.roomNumber == 1) {
+			this.boundL = 0;
+			this.boundO = 0;
+			this.boundR = 17 * dimension;
+			this.boundU = 9 * dimension;
+			//cam.setzeBounds(0, 0, 17 * dimension, 9 * dimension);
+		} else if(this.roomNumber == 2) {
+			this.boundL = 0;
+			this.boundO  = 0;
+		}
+		cam.setzeBounds(boundL, boundO, boundR, boundU);
 	}
 
-	public int kollisionAbfragen(int[][] room, int x, int y) {
+	public int kollisionAbfragen(Integer[][] currentRoom2, int x, int y) {
 		int c;
 		// for (int i = 0; i <= x; i++) {
 		// for (int j = 0; j <= y; i++) {
 		// switch (room[i][j]) {
-		System.out.println(room[y][x]);
-		for (int i = 0; i < room[0].length; i++) {
-			for (int a = 0; a < room.length; a++) {
-				System.out.print(room[a][i] + "     ");
-			}
-			System.out.println();
-		}
-		switch (room[y][x]) {
+//		System.out.println(room[y][x]);
+//		for (int i = 0; i < room[0].length; i++) {
+//			for (int a = 0; a < room.length; a++) {
+//				System.out.print(room[a][i] + "     ");
+//			}
+//			System.out.println();
+//		}
+		switch (currentRoom2[y][x]) {
 		case 1:
 		case 2:
 		case 3:
@@ -112,7 +129,7 @@ public class Game extends SPIEL {
 			 * if(this.posy-64 == 32 && this.posx == 544) { n.setzeDrehwinkel(0);
 			 * cam.setzeBounds(0,576,5120,2880); n.bewegen(0,576); this.posy += 576; }
 			 */
-			if (kollisionAbfragen(R.room1, fx, fy - 1) == 1 // && this.posy < 9 * dimension
+			if (kollisionAbfragen(currentRoom, fx, fy - 1) == 1 // && this.posy < 9 * dimension
 			// || kollisionAbfragen(R.room2, fx, fy - 1) == false && this.posy <= 18 *
 			// dimension
 			) {
@@ -120,7 +137,8 @@ public class Game extends SPIEL {
 				n.bewegen(0, -dimension);
 				this.posy -= dimension;
 				this.fy -= 1;
-			} else if (kollisionAbfragen(R.room1, fx, fy - 1) == 2) {
+			} else if (kollisionAbfragen(currentRoom, fx, fy - 1) == 2) {
+				currentRoom = R.checkDoor(currentRoom, 9);
 				n.bewegen(0, -192);
 				cam.setzeBounds(0, 9 * dimension, 17 * dimension, 18 * dimension); //bounds müssen noch an räume angepasst werden
 				this.posy -= 192;
@@ -130,27 +148,30 @@ public class Game extends SPIEL {
 			break;
 		case TASTE.LINKS:
 		case TASTE.A:
-			if (kollisionAbfragen(R.room1, fx - 1, fy) == 1) {
+			if (kollisionAbfragen(currentRoom, fx - 1, fy) == 1) {
 				n.setzeDrehwinkel(25);
 				n.bewegen(-dimension, 0);
 				this.posx += dimension;
 				this.fx -= 1;
-			} else if (kollisionAbfragen(R.room1, fx - 1, fy) == 2) {
+			} else if (kollisionAbfragen(currentRoom, fx - 1, fy) == 2) {
+				currentRoom = R.checkDoor(currentRoom, 11);
+				roomNumber--;
 				n.bewegen(-192, 0);
-				cam.setzeBounds(0, 9 * dimension, 17 * dimension, 18 * dimension); //bounds müssen noch an räume angepasst werden
+				cam.setzeBounds((roomNumber - 1) * 17, 0, (roomNumber) * 17 * dimension, (roomNumber) * 9 * dimension); //bounds müssen noch an räume angepasst werden
 				this.posx -= 192;
 				this.fx = 15;
-				this.fy = 7;
+				this.fy = 4;
 			}
 			break;
 		case TASTE.UNTEN:
 		case TASTE.S:
 			n.setzeDrehwinkel(0);
-			if (kollisionAbfragen(R.room1, fx, fy + 1) == 1) {
+			if (kollisionAbfragen(currentRoom, fx, fy + 1) == 1) {
 				n.bewegen(0, +dimension);
 				this.posy += dimension;
 				this.fy += 1;
-			} else if (kollisionAbfragen(R.room1, fx, fy + 1) == 2) {
+			} else if (kollisionAbfragen(currentRoom, fx, fy + 1) == 2) {
+				currentRoom = R.checkDoor(currentRoom, 10);
 				n.bewegen(0, 192);
 				cam.setzeBounds(0, 9 * dimension, 17 * dimension, 18 * dimension); // l o r u
 				this.posy += 192;
@@ -168,21 +189,23 @@ public class Game extends SPIEL {
 			break;
 		case TASTE.RECHTS:
 		case TASTE.D:
-			if (kollisionAbfragen(R.room1, fx + 1, fy) == 1) {
+			if (kollisionAbfragen(currentRoom, fx + 1, fy) == 1) {
 				n.setzeDrehwinkel(-25);
 				n.bewegen(+dimension, 0);
 				this.posx += dimension;
 				this.fx += 1;
-			} else if (kollisionAbfragen(R.room1, fx + 1, fy) == 2) {
+			} else if (kollisionAbfragen(currentRoom, fx + 1, fy) == 2) {
+				currentRoom = R.checkDoor(currentRoom, 12);
+				roomNumber++;
 				n.bewegen(+192, 0);
-				cam.setzeBounds(0, 9 * dimension, 17 * dimension, 18 * dimension); //bounds müssen noch an räume angepasst werden
+				cam.setzeBounds((roomNumber - 1) * 17 * dimension, 0, (roomNumber - 1) * 17 * dimension, (roomNumber - 1) * 9 * dimension); //bounds müssen noch an räume angepasst werden
 				this.posx += 192;
 				this.fx = 1;
 				this.fy = 4;
 			}
 			break;
 
-		case TASTE.R: // allgemeiner Kamera-Reset, muss bei neuen Rï¿½umen angepasst werden
+		case TASTE.R: // allgemeiner Kamera-Reset, muss bei neuen Räumen angepasst werden
 			if (this.posy < 9 * dimension) {
 				cam.setzeBounds(0, 0, 17 * dimension, 9 * dimension);
 			} else if (this.posy > 9 * dimension) {
@@ -195,14 +218,14 @@ public class Game extends SPIEL {
 		}
 	}
 
-	public void generation(int[][] room, int x, int y) {
+	public void generation(Integer[][] room1, int x, int y) {
 		StringBuilder sb = new StringBuilder(50);
 		sb.append(stddir);
 		int dy = y;
 		float deg = 0;
 		for (int i = 0; i < 17; i++) { // Abfrage in x-Richtung
 			for (int j = 0; j < 9; j++) { // Abfrage in y-Richtung
-				switch (room[j][i]) {
+				switch (room1[j][i]) {
 				case R._BODEN_:
 					sb.append("/img/Boden.png");
 					break;
