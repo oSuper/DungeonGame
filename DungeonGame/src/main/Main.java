@@ -7,6 +7,7 @@ import customclasses.Game;
 
 public class Main
 {
+	//hi
 	/*
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	static int width = (int) screenSize.getWidth();
