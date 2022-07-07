@@ -11,6 +11,8 @@ public class Game extends SPIEL {
 
 	// Manager m = new Manager();
 	private static int dimension = 64;
+	private static int xD = 17;
+	private static int yD = 9;
 	Knoten knoten = new Knoten();
 	int xRoom = 1;
 	int yRoom = 1;
@@ -50,23 +52,24 @@ public class Game extends SPIEL {
 		// n.addCam(dimension);
 		// posx = (1.5 * dimension);
 		// posy = (1.5 * dimension);
-		cam.setzeBounds(0, 0, 17 * dimension, 9 * dimension);
+		cam.setzeBounds(0, 0, xD * dimension, yD * dimension);
 		// cam.setzeFokus(n.getB());
 
 	}
-	
-	//public void setzeBoundingRechteck(int boundL, int boundO, int boundR, int boundU){
+
+	// public void setzeBoundingRechteck(int boundL, int boundO, int boundR, int
+	// boundU){
 	public void setCamBounds() {
-		//cam.setzeBounds(boundL, boundO, boundR, boundU);
-		if(this.roomNumber == 1) {
+		// cam.setzeBounds(boundL, boundO, boundR, boundU);
+		if (this.roomNumber == 1) {
 			this.boundL = 0;
 			this.boundO = 0;
 			this.boundR = 17 * dimension;
 			this.boundU = 9 * dimension;
-			//cam.setzeBounds(0, 0, 17 * dimension, 9 * dimension);
-		} else if(this.roomNumber == 2) {
+			// cam.setzeBounds(0, 0, 17 * dimension, 9 * dimension);
+		} else if (this.roomNumber == 2) {
 			this.boundL = 0;
-			this.boundO  = 0;
+			this.boundO = 0;
 		}
 		cam.setzeBounds(boundL, boundO, boundR, boundU);
 	}
@@ -140,7 +143,8 @@ public class Game extends SPIEL {
 			} else if (kollisionAbfragen(currentRoom, fx, fy - 1) == 2) {
 				currentRoom = R.checkDoor(currentRoom, 9);
 				n.bewegen(0, -192);
-				cam.setzeBounds(0, 9 * dimension, 17 * dimension, 18 * dimension); //bounds müssen noch an räume angepasst werden
+				cam.setzeBounds(0, 9 * dimension, 17 * dimension, 18 * dimension); // bounds müssen noch an räume
+																					// angepasst werden
 				this.posy -= 192;
 				this.fx = 8;
 				this.fy = 7;
@@ -157,7 +161,16 @@ public class Game extends SPIEL {
 				currentRoom = R.checkDoor(currentRoom, 11);
 				roomNumber--;
 				n.bewegen(-192, 0);
-				cam.setzeBounds((roomNumber - 1) * 17, 0, (roomNumber) * 17 * dimension, (roomNumber) * 9 * dimension); //bounds müssen noch an räume angepasst werden
+				cam.setzeBounds((roomNumber - 1) * 17, 0, (roomNumber) * 17 * dimension, (roomNumber) * 9 * dimension); // bounds
+																														// müssen
+																														// noch
+																														// an
+																														// räume
+																														// angepasst
+																														// werden
+				// cam.setzeBounds((roomNumber - 1) * 17 * dimension, 0, (roomNumber - 1) * 17 *
+				// dimension, (roomNumber - 1) * 9 * dimension); //bounds müssen noch an räume
+				// angepasst werden
 				this.posx -= 192;
 				this.fx = 15;
 				this.fy = 4;
@@ -198,7 +211,8 @@ public class Game extends SPIEL {
 				currentRoom = R.checkDoor(currentRoom, 12);
 				roomNumber++;
 				n.bewegen(+192, 0);
-				cam.setzeBounds((roomNumber - 1) * 17 * dimension, 0, (roomNumber - 1) * 17 * dimension, (roomNumber - 1) * 9 * dimension); //bounds müssen noch an räume angepasst werden
+				cam.setzeBounds((roomNumber - 1) * 17 * dimension, 0, (roomNumber - 1) * 17 * dimension,
+						(roomNumber - 1) * 9 * dimension); // bounds müssen noch an räume angepasst werden
 				this.posx += 192;
 				this.fx = 1;
 				this.fy = 4;
